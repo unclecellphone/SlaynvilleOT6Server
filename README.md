@@ -11,7 +11,7 @@ You'll likely have to fight VSPKG to get it to compile on Windows,
 but **[the generic OT installation here](https://docs.otland.net/ots-guide/running-your-first-linux-web-and-otserver)** 
 should work for you, in general, on Ubuntu.  
 
-# WHAT THE HECK IS SLAYNVILLE
+# What the heck is Slaynville?
 
 **[Check out slaynville here, download our 6.X client, and join our server](https://www.slaynville.com)**
 **[Check out slaynville here, download our 6.X client, and join our server](https://www.slaynville.com)**
