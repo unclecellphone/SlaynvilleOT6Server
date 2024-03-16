@@ -1,0 +1,10 @@
+<npc name="Starscream" script="Starscream.lua" floorchange="0" walkinterval="1500" speed="100">
+	<health now="100" max="100"/>
+	<look type="128" head="79" body="126" legs="79" feet="126"/>
+	<parameters>
+<parameter key="message_placedinqueue" value="wait a moment, |PLAYERNAME|."/>
+<parameter key="message_walkaway" value="if you are heavily wounded or poisoned, return for a healing.  or don't."/>
+<parameter key="message_farewell" value="|PLAYERNAME|."/>
+<parameter key="message_idletimeout" value="fuck off, |PLAYERNAME|."/>
+	</parameters>
+</npc>

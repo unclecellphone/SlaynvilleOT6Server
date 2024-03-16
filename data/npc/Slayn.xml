@@ -1,0 +1,12 @@
+<npc name="Slayn" script="Slayn.lua" floorchange="0" walkinterval="1500" speed="100">
+	<health now="100" max="100"/>
+	<look type="128" head="79" body="126" legs="79" feet="126"/>
+	<parameters>
+<parameter key="idletime" value="30"/>
+<parameter key="message_greet" value="if you are new in tibia, be quiet."/>
+<parameter key="message_placedinqueue" value="wait a minute, |PLAYERNAME|."/>
+<parameter key="message_walkaway" value="if you are heavily wounded or poisoned, i'll heal you.  i would rather not."/>
+<parameter key="message_farewell" value="bye |PLAYERNAME|."/>
+<parameter key="message_idletimeout" value="bye |PLAYERNAME|."/>
+	</parameters>
+</npc>
