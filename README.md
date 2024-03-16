@@ -14,6 +14,7 @@
 # What the heck is Slaynville?
 
 **[Check out slaynville here, download our 6.X client, and join our server](https://www.slaynville.com)**
+
 **[Check out slaynville here, download our 6.X client, and join our server](https://www.slaynville.com)**
 
 This downgrade is based on TFS 1.5 up to Dec 21, 2021, commit: https://github.com/otland/forgottenserver/commit/17bf638815fa7c04d5b723baa8e0bfbdaad341f2
