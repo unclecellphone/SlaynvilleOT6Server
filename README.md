@@ -5,11 +5,11 @@
 
 # Hardcore Tibia 6.X Gameplay Server
 
-This code will run a tibia OT gameplay server **[(our corresponding client found here)](https://github.com/unclecellphone/SlaynvilleOT6Client)**
-This code should compile and run on Windows and Ubuntu.  
-You'll likely have to fight VSPKG to get it to compile on Windows,
-but **[the generic OT installation here](https://docs.otland.net/ots-guide/running-your-first-linux-web-and-otserver)** 
-should work for you, in general, on Ubuntu.  
+#### This code will run a tibia OT gameplay server **[(our corresponding client found here)](https://github.com/unclecellphone/SlaynvilleOT6Client)**
+#### This code should compile and run on Windows and Ubuntu.  
+#### You'll likely have to fight VSPKG to get it to compile on Windows,
+#### but **[the generic OT installation here](https://docs.otland.net/ots-guide/running-your-first-linux-web-and-otserver)** 
+#### should work for you, in general, on Ubuntu.  
 
 # What the heck is Slaynville?
 
