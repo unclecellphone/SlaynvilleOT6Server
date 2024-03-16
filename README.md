@@ -11,19 +11,27 @@
 #### but **[the generic OT installation here](https://docs.otland.net/ots-guide/running-your-first-linux-web-and-otserver)** 
 #### should work for you, in general, on Ubuntu.  
 
+# How can I use this codebase?
+
+I would highly suggest you use this codebase in tandom with two other codebases:
+#### [Slaynville client codebase](https://github.com/unclecellphone/SlaynvilleOT6Client)
+#### [MyAAC Open Source Tibia OT Website]([https://github.com/unclecellphone/SlaynvilleOT6Client](https://github.com/slawkens/myaac))
+
 # What the heck is Slaynville?
 
 **[Check out slaynville here, download our 6.X client, and join our server](https://www.slaynville.com)**
 
 **[Check out slaynville here, download our 6.X client, and join our server](https://www.slaynville.com)**
 
-This downgrade is based on TFS 1.5 up to Dec 21, 2021, commit: https://github.com/otland/forgottenserver/commit/17bf638815fa7c04d5b723baa8e0bfbdaad341f2
+#### This downgrade is based on [Nekiro's Downgrades](https://github.com/nekiro/TFS-1.5-Downgrades) which are based on
+#### TFS 1.5 up to Dec 21, 2021, commit: https://github.com/otland/forgottenserver/commit/17bf638815fa7c04d5b723baa8e0bfbdaad341f2
 
 ## Other Related distributions By Nekiro, the grandfather of this project:
 
 #### **[7.72](https://github.com/nekiro/TFS-1.4-Downgrades/tree/7.72)**
 #### **[8.0](https://github.com/nekiro/TFS-1.4-Downgrades/tree/8.0)**
 #### **[8.60](https://github.com/nekiro/TFS-1.4-Downgrades/tree/8.60)**
+
 
 ## How to compile
 
