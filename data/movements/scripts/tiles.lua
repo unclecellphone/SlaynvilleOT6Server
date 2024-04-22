@@ -22,6 +22,12 @@ SORCTHAISTP2 = { x = 32300, y = 32267, z =  7 }
 SORCTHAISTPTO = { x = 32308, y = 32267, z =  7 }
 SORCVOC = { 1, 5 }
 DRUIDVOC = { 2, 6 }
+HELLGATEEXITTILE = {x= 32816, y=31599,z=9}
+HELLGATEEXITBASIN = {x= 32816, y=31601,z=9, stackpos=2}
+HELLGATETPUID = 20943
+HELLGATETPSHOWPOS = {x= 32815, y=31601,z=9, stackpos=1}
+HELLGATETPHIDEPOS = {x= 32802, y=31601,z=9, stackpos=1}
+FETISHID = 2194
 
 function onStepIn(creature, item, position, fromPosition)
 	if creature and creature.uid then
@@ -39,12 +45,38 @@ function onStepIn(creature, item, position, fromPosition)
 		end
 	end
 
+	local t = Tile(position)
+	if t and t:hasFlag(TILESTATE_PROTECTIONZONE) then
+		if fromPosition.z == position.z then
+			local player = Player(creature.uid)
+			if player then
+				local gid = player:getGroupId()
+				if t:getCreatureCount() > 1 and gid < ACCOUNT_TYPE_GAMEMASTER then
+			        local player = Player(creature)
+			        player:teleportTo(fromPosition)
+			        player:sendCancelMessage("You cannot stand here.")
+			        return false
+				end
+			end
+		end
+	end
+
+	if t and position.x == HELLGATEEXITTILE.x and position.y == HELLGATEEXITTILE.y and position.z == HELLGATEEXITTILE.z then
+		local fetish = getThingFromPos(HELLGATEEXITBASIN)
+		if fetish and fetish.itemid == FETISHID then
+			local thing = Item(HELLGATETPUID)
+			if thing then
+				thing:moveTo(HELLGATETPSHOWPOS)
+			end
+		end
+	end
+
 	if not increasing[item.itemid] then
 		return true
 	end
 
 	item:transform(increasing[item.itemid])
-
+	
 	if creature and creature.uid then
 		local isTP1 = position.x == SORCTHAISTP.x and position.y == SORCTHAISTP.y and position.z == SORCTHAISTP.z
 		local isTP2 = position.x == SORCTHAISTP2.x and position.y == SORCTHAISTP2.y and position.z == SORCTHAISTP2.z

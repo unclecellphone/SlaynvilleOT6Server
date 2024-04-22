@@ -1,8 +1,8 @@
 function onUse(cid, item, fromPosition, itemEx, toPosition)
-	local gatePos = {x=33314, y=31592, z=15, stackpos=1}
+	local gatePos = {x=32792, y=31893, z=11, stackpos=1}
 	local nextTile = {x=gatePos.x+1, y=gatePos.y, z=gatePos.z}
-	local teleportPos = {x=33316, y=31591, z=15, stackpos=1}
-	local goPos = {x=33321, y=31591, z=14, stackpos=1}
+	local teleportPos = {x=32796, y=31892, z=11, stackpos=1}
+	local goPos = {x=32796, y=31893, z=10, stackpos=1}
 	local gateItem = getThingFromPos(gatePos)
 	local teleportItem = getThingFromPos(teleportPos)
 

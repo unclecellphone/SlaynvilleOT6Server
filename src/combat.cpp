@@ -628,14 +628,14 @@ void Combat::combatTileEffects(const SpectatorVec& spectators, Creature* caster,
 						itemId = ITEM_WILDGROWTH_NOPVP;
 					}
 				} else if (itemId == ITEM_FIREFIELD_PVP_FULL || itemId == ITEM_POISONFIELD_PVP || itemId == ITEM_ENERGYFIELD_PVP) {
-					casterPlayer->addInFightTicks();
+					//casterPlayer->addInFightTicks();
 				}
 			}
 		}
 
 		Item* item = Item::CreateItem(itemId);
 		if (caster) {
-			item->setOwner(caster->getID());
+			//item->setOwner(caster->getID());
 		}
 
 		ReturnValue ret = g_game.internalAddItem(tile, item);

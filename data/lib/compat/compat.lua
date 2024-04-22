@@ -503,6 +503,36 @@ function getDirectionTo(pos1, pos2)
 end
 
 
+function isValidMoney(money)
+    return isNumber(money) and money > 0
+end
+
+function getMoneyCount(string)
+    local b, e = string:find("%d+")
+    local tonumber = tonumber(string:sub(b, e))
+    if tonumber > 2 ^ 32 - 1 then
+        print("Warning: Casting value to 32bit to prevent crash\n"..debug.traceback())
+    end
+    local money = b and e and math.min(2 ^ 32 - 1, tonumber) or -1
+    if isValidMoney(money) then
+        return money
+    end
+    return -1
+end
+
+function getMoneyWeight(money)
+    local weight, currencyItems = 0, Game.getCurrencyItems()
+    for index = #currencyItems, 1, -1 do
+        local currency = currencyItems[index]
+        local worth = currency:getWorth()
+        local currencyCoins = math.floor(money / worth)
+        if currencyCoins > 0 then
+            money = money - (currencyCoins * worth)
+            weight = weight + currency:getWeight(currencyCoins)
+        end
+    end
+    return weight
+end
 function getPlayerParty(cid)
 	local player = Player(cid)
 	if player == nil then

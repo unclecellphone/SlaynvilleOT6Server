@@ -3,6 +3,7 @@ dofile('data/npc/lib/greeting.lua')
 local keywordHandler = KeywordHandler:new()
 local npcHandler = NpcHandler:new(keywordHandler)
 NpcSystem.parseParameters(npcHandler)
+local apple = 2674
 
 -- OTServ event handling functions
 function onCreatureAppear(cid)			npcHandler:onCreatureAppear(cid)			end
@@ -25,7 +26,6 @@ keywordHandler:addKeyword({'mad mage'}, StdModule.say, {npcHandler = npcHandler,
 keywordHandler:addKeyword({'riddle'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "Great riddle, isn´t it? If you can tell me the correct answer, I will give you something. Hehehe!"})
 keywordHandler:addKeyword({'something'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "No! I won´t tell you. Shame coz it would be useful for you - hehehe."})
 keywordHandler:addKeyword({'escape'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "How could I escape? They only give me rotten food here. I can´t regain my powers because I have no mana!"})
-keywordHandler:addKeyword({'key'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "Sure I have the key! Hehehe! Perhaps I will give it to you. IF you can solve my riddle."})
 keywordHandler:addKeyword({'mino'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "They are trying to capture me! Or hang on! Haven't they already captured me? Hmmm - I will have to think about this."})
 keywordHandler:addKeyword({'markwin'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "He is the worst of them all! He is the king of the minos! May he burn in hell!"})
 keywordHandler:addKeyword({'labyrinth'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "It´s easy to find your way through it! Just follow the pools of mud. Hehe - useful hint, isn´t it?"})
@@ -42,36 +42,54 @@ function creatureSayCallback(cid, type, msg)
 		return false
 	end
 		
-		local key = "PD-D-KS-P-PD"
-		local queststate1 = getPlayerStorageValue(cid,6667)
+	local answer = "PD-D-KS-P-PD"
+	local queststate1 = getPlayerStorageValue(cid,6667)
+	local queststatekey = getPlayerStorageValue(cid,14416)
+	local queststateapple = getPlayerStorageValue(cid,14417)
 
-		if msgcontains(msg, 'math') and queststate1 == 1 then
-        npcHandler:say("My surreal numbers are based on astonishing facts. Are you interested in learning the secret of mathemagics?", cid)
-        talk_state = 1
-		elseif msgcontains(msg, 'yes') and talk_state == 1 then
-            npcHandler:say("But first tell me your favourite colour please!", cid)
-                talk_state = 2
-		elseif msgcontains(msg, 'green') and talk_state == 2 then
-            npcHandler:say("Very interesting. So are you ready to proceed in you lesson in mathemagics?", cid)
-				doPlayerRemoveMoney(cid,1000)
-					talk_state = 3
-		elseif msgcontains(msg, 'yes') and talk_state == 3 then
-            npcHandler:say("So know that everthing is based on the simple fact that 1 + 1 = 2!", cid)
-				setPlayerStorageValue(cid,6668,1)
-                talk_state = 4
-		elseif msgcontains(msg, 'bye') and (talk_state >= 1 and talk_state <= 4) then
-			npcHandler:say("Next time we should talk about my surreal numbers.", cid)
+	if msgcontains(msg, 'math') and queststate1 == 1 then
+	    npcHandler:say("My surreal numbers are based on astonishing facts. Are you interested in learning the secret of mathemagics?", cid)
+	    talk_state = 1
+	elseif msgcontains(msg, 'key')  and queststateapple <= 6 then
+		npcHandler:say("Sure I have the key! Hehehe! Perhaps I will give it to you. IF you can solve my riddle.", cid)
+	elseif msgcontains(msg, 'yes') and talk_state == 1 then
+        npcHandler:say("But first tell me your favourite colour please!", cid)
+            talk_state = 2
+	elseif msgcontains(msg, 'green') and talk_state == 2 then
+        npcHandler:say("Very interesting. So are you ready to proceed in you lesson in mathemagics?", cid)
+			doPlayerRemoveMoney(cid,1000)
+				talk_state = 3
+	elseif msgcontains(msg, 'yes') and talk_state == 3 then
+        npcHandler:say("So know that everthing is based on the simple fact that 1 + 1 = 2!", cid)
+			setPlayerStorageValue(cid,6668,1)
+            talk_state = 4
+	elseif msgcontains(msg, 'bye') and (talk_state >= 1 and talk_state <= 4) then
+		npcHandler:say("Next time we should talk about my surreal numbers.", cid)
 
-			talk_state = 0
-		elseif msgcontains(msg, 'key') then
+		talk_state = 0
+	elseif msgcontains(msg, 'key')  and queststateapple > 6 then
 		npcHandler:say("Do you want a key to the mad mage room?", cid)
 		talk_state = 5
-		elseif msgcontains(msg, 'yes') and talk_state == 5 then
+	elseif msgcontains(msg, 'apple') and queststatekey == 1 then
+		if getPlayerItemCount(cid, apple) >= 1 then 
+			doPlayerRemoveItem(cid, apple, 1)
+			setPlayerStorageValue(cid, 14417, queststateapple + 1)
+			npcHandler:say("Ooooooooooo.<sniff>", cid)
+			setPlayerStorageValue(cid,14416, 1)
+			talk_state = 0
+		else
+			npcHandler:say("Do you want to trick me? You don't have one lousy apple!", cid)
+		end
+	elseif msgcontains(msg, answer) then
+		npcHandler:say("Hurray! For that I will give you my key for - hmm - let´s say ... some apples. Interested?", cid)
+		setPlayerStorageValue(cid,14416, 1)
+		talk_state = 0
+	elseif msgcontains(msg, 'yes') and talk_state == 5 then
 		npcHandler:say("Here you are a special key.", cid)
 		key = doPlayerAddItem(cid, 2088, 1)
 		doSetItemActionId(key,3666)
 		talk_state = 0
-		end
+	end
 	return true
 end
 

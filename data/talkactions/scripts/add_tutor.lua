@@ -1,8 +1,9 @@
 function onSay(player, words, param)
-	if player:getAccountType() <= ACCOUNT_TYPE_SENIORTUTOR then
+	if player:getAccountType() < ACCOUNT_TYPE_GOD then
 		return true
 	end
 
+	logCommand(player, words, param)
 	local target = Player(param)
 	if not target then
 		player:sendCancelMessage("A player with that name is not online.")

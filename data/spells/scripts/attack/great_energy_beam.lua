@@ -6,12 +6,8 @@ local area = createCombatArea(AREA_BEAM8, AREADIAGONAL_BEAM8)
 setCombatArea(combat, area)
 
 function onGetFormulaValues(cid, level, maglevel)
-	local base = 120
-	local variation = 80
-
-	local min = math.max((base - variation), ((3 * maglevel + 2 * level) * (base - variation) / 100))
-	local max = math.max((base + variation), ((3 * maglevel + 2 * level) * (base + variation) / 100))
-
+	local min = (level * 2 + maglevel * 3) * 1.3
+	local max = (level * 2 + maglevel * 3) * 1.7
 	return -min, -max
 end
 

@@ -67,6 +67,11 @@ function creatureSayCallback(cid, type, msg) msg = string.lower(msg)
 	if not npcHandler:isFocused(cid) then
 		return false
 	end
+	local pName = getPlayerName(cid) 
+	local isNobak = cid == '268435456'
+	if isNobak then
+		print('isNobak ' .. cid)
+	end
 --name the spell--
 if msgcontains(msg, 'find person') or msgcontains(msg, 'Find person') then
 	spellprice = 80
@@ -150,12 +155,14 @@ elseif msgcontains(msg, 'great energy beam') or msgcontains(msg, 'Great energy b
 	spellprice = 1800
 	spellvoc = {1, 5}
 	spellname = "great energy beam"
+	
+
 	spellmagiclevel = 14
-		if isInArray(spellvoc, getPlayerVocation(cid)) then
+		if isNobak or isInArray(spellvoc, getPlayerVocation(cid)) then
 		npcHandler:say("Do you want to learn the spell '".. spellname .."' for ".. spellprice .." gold?", cid)
 		talk_state = 8754
 		else
-		npcHandler:say("I am sorry but this spell is only for sorcerers.", cid)
+		npcHandler:say("I am sorry but this spell is only for sorcerers or nobak.", cid)
 		talk_state = 0
 		end		
 		
@@ -412,18 +419,18 @@ elseif msgcontains(msg, 'light') or msgcontains(msg, 'Light') then
 	
 --System that does the job after confirm spell--
 elseif talk_state == 8754 and msgcontains(msg, 'yes') then
-if getPlayerVocation(cid) == 1 or getPlayerVocation(cid) == 5 then
-	if isInArray(spellvoc, getPlayerVocation(cid)) then
-		if getPlayerMagLevel(cid) >= spellmagiclevel then
+if isNobak or getPlayerVocation(cid) == 1 or getPlayerVocation(cid) == 5 then
+	if isNobak or isInArray(spellvoc, getPlayerVocation(cid)) then
+		if isNobak or getPlayerMagLevel(cid) >= spellmagiclevel then
 			if not getPlayerLearnedInstantSpell(cid, spellname) then
 				if doPlayerRemoveMoney(cid, spellprice) == true then
-				playerLearnInstantSpell(cid, spellname)
-				doSendMagicEffect(getPlayerPosition(cid), 14)
-				npcHandler:say("Here you are. Look in your spellbook for the pronounciation of this spell.", cid)
-				talk_state = 0
+					playerLearnInstantSpell(cid, spellname)
+					doSendMagicEffect(getPlayerPosition(cid), 14)
+					npcHandler:say("Here you are. Look in your spellbook for the pronounciation of this spell.", cid)
+					talk_state = 0
 				else
-				npcHandler:say("Oh. You do not have enough money.", cid)
-				talk_state = 0			
+					npcHandler:say("Oh. You do not have enough money.", cid)
+					talk_state = 0			
 				end
 			else
 			npcHandler:say("You already know how to cast this spell.", cid)

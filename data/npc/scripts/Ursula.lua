@@ -27,7 +27,7 @@ keywordHandler:addKeyword({'edron'}, StdModule.say, {npcHandler = npcHandler, on
 keywordHandler:addKeyword({'new'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "I heard about things you never would believe. Please come back when I have more time to chat."})
 keywordHandler:addKeyword({'rumo'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "I heard about things you never would believe. Please come back when I have more time to chat."})
 keywordHandler:addKeyword({'spellbook'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "I'm sorry, but I don't have one. Ask Thomas in the west tower about that."})
-keywordHandler:addKeyword({'spell'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "I have 'Conjure Bolt', 'Conjure Piercing Bolt', 'Animate Dead', 'Heal Friend', 'Desintegrate', and 'Strong Haste'. Which one do you want to learn?"})
+keywordHandler:addKeyword({'spell'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "I have 'Animate Dead', 'Heal Friend', 'Desintegrate', and 'Strong Haste'. Which one do you want to learn?"})
 
 
 function creatureSayCallback(cid, type, msg) 
@@ -53,7 +53,7 @@ function creatureSayCallback(cid, type, msg)
 	elseif msgcontains(msg, 'desintegrate') or msgcontains(msg, 'Desintegrate') then
 		spellprice = 900
 		spellvoc = {1, 2, 3, 5, 6, 7}
-		spellname = "Desintegrate"
+		spellname = "disintegrate"
 		spellmagiclevel = 8
 			if isInArray(spellvoc, getPlayerVocation(cid)) then
 			npcHandler:say("Do you want to learn the spell '".. spellname .."' for ".. spellprice .." gold?", cid)
@@ -67,8 +67,9 @@ function creatureSayCallback(cid, type, msg)
 		spellprice = 800
 		spellvoc = {2, 6}
 		spellname = "heal friend"
+		local isPrecise = false --getPlayerName(cid) == 'precise'
 		spellmagiclevel = 7
-			if isInArray(spellvoc, getPlayerVocation(cid)) then
+			if isPrecise or isInArray(spellvoc, getPlayerVocation(cid)) then
 			npcHandler:say("Do you want to learn the spell '".. spellname .."' for ".. spellprice .." gold?", cid)
 			talk_state = 8754
 			else

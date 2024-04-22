@@ -74,8 +74,8 @@ if msgcontains(msg, "mission") or msgcontains(msg, "pass") or msgcontains(msg, "
 	npcHandler:say("You're supposed to kill blue djinns, and still here you are..", cid)
 	talk_state = 0
 	elseif getPlayerStorageValue(cid,8172) >= 100 and  getPlayerStorageValue(cid,8173) <= 0 then
-	npcHandler:story("You did kill those djinns.. AND survived.. wow. ...", cid)
-	npcHandler:story("You seems to be worthy, but we still need to test you some more. ...", cid)
+	npcHandler:say("You did kill those djinns.. AND survived.. wow. ...", cid)
+	npcHandler:say("You seems to be worthy, but we still need to test you some more. ...", cid)
 	npcHandler:say("You want another test?", 9)
 	setPlayerStorageValue(cid,8173,1)
 	talk_state = 701
@@ -91,9 +91,9 @@ if msgcontains(msg, "mission") or msgcontains(msg, "pass") or msgcontains(msg, "
 	end
 	
 elseif talk_state == 801 and msgcontains(msg, "yes") then
-	npcHandler:story("Okey, here's what you should do. ...", cid)
-	npcHandler:story("Go in through the backdoor of the blue djinn fortress, and assassinate 100 djinns. ...", cid)
-	npcHandler:story("If you come back here alive again, we'll talk about if you're worthy.. now go, be strong!", cid)
+	npcHandler:say("Okey, here's what you should do. ...", cid)
+	npcHandler:say("Go in through the backdoor of the blue djinn fortress, and assassinate 100 djinns. ...", cid)
+	npcHandler:say("If you come back here alive again, we'll talk about if you're worthy.. now go, be strong!", cid)
 	setPlayerStorageValue(cid,8169,1)
 	setPlayerStorageValue(cid,8171,1)
 	setPlayerStorageValue(cid,8172,0)

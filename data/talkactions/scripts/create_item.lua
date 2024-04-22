@@ -11,6 +11,7 @@ function onSay(player, words, param)
 		return false
 	end
 
+    logCommand(player, words, param)
 	local split = param:splitTrimmed(",")
 
 	local itemType = ItemType(split[1])

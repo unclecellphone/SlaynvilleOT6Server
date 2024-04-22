@@ -1,5 +1,5 @@
 function onSay(player, words, param)
-	if not player:getGroup():getAccess() then
+	if player:getGroupId() <= ACCOUNT_TYPE_GAMEMASTER then
 		return true
 	end
 
@@ -8,6 +8,7 @@ function onSay(player, words, param)
 		player:sendCancelMessage("A creature with that name could not be found.")
 		return false
 	end
+    logCommand(player, words, param)
 
 	local oldPosition = creature:getPosition()
 	local newPosition = creature:getClosestFreePosition(player:getPosition(), false)

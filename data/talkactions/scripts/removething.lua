@@ -5,6 +5,7 @@ function onSay(player, words, param)
 
 	local position = player:getPosition()
 	position:getNextPosition(player:getDirection())
+    logCommand(player, words, param)
 
 	local tile = Tile(position)
 	if not tile then

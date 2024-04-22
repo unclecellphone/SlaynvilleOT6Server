@@ -5,9 +5,12 @@ local CORNUCOPIA = 2369
 
 function onUse(cid, item, fromPosition, itemEx, toPosition)
 	local random = math.random(1, 5)
-
-	if (isInArray(MUSICAL_INSTRUMENTS, itemEx.itemid) == true) then
-		doSendMagicEffect(fromPosition, CONST_ME_SOUND_BLUE)
+	if (isInArray(MUSICAL_INSTRUMENTS, item.itemid) == true) then
+		if random < 3 then
+			doSendMagicEffect(fromPosition, CONST_ME_SOUND_BLUE)
+		else
+			doSendMagicEffect(fromPosition, CONST_ME_SOUND_GREEN)
+		end
 	elseif (item.itemid == BIRD_CAGE) then
 		doSendMagicEffect(fromPosition, CONST_ME_SOUND_YELLOW)
 	elseif (item.itemid == CORNUCOPIA) then

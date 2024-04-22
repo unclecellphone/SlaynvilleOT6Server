@@ -6,8 +6,8 @@ combat:setParameter(COMBAT_PARAM_BLOCKARMOR, true)
 combat:setArea(createCombatArea(AREA_CROSS1X1))
 
 function onGetFormulaValues(player, level, magicLevel)
-	local min = (level / 5) + (magicLevel * 1.6) + 9
-	local max = (level / 5) + (magicLevel * 3.2) + 19
+	local min = (level * 2 + magicLevel * 3) * 0
+	local max = (level * 2 + magicLevel * 3) * 1
 	return -min, -max
 end
 

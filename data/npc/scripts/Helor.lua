@@ -79,7 +79,7 @@ elseif msgcontains(msg, 'invisible') or msgcontains(msg, 'Invisible') then
 elseif msgcontains(msg, 'explosive arrow') or msgcontains(msg, 'Explosive arrow') then
 	spellprice = 1000
 	spellvoc = {3, 7}
-	spellname = "explosive arrow"
+	spellname = "conjure explosive arrow"
 	spellmagiclevel = 10
 		if isInArray(spellvoc, getPlayerVocation(cid)) then
 		npcHandler:say("Do you want to learn the spell '".. spellname .."' for ".. spellprice .." gold?", cid)

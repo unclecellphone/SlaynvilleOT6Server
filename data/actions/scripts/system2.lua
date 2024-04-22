@@ -39,7 +39,7 @@ local config = {
 			{itemid = 2463} -- plate armor
 		},
 	},
-	[20086] = {
+	[20922] = {
 		items = {
 			{itemid = 2091, actionid = 6010}, 	-- golden key, demon quest
 			{itemid = 1948},					-- parchment

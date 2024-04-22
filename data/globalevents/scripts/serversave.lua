@@ -20,25 +20,37 @@ local function ServerSave()
 end
 
 local function ServerSaveWarning(time)
-	local remaningTime = tonumber(time) - 60000
+	local fiveMinutes = 60000 * 5
+	if time > fiveMinutes + 1 then
+		local remainingTime = tonumber(time) - fiveMinutes
+		if configManager.getBoolean(configKeys.SERVER_SAVE_NOTIFY_MESSAGE) then
+			Game.broadcastMessage("Server is saving game in " .. ( remainingTime /60000 ) .."  minute(s). Please logout.", MESSAGE_STATUS_WARNING)
+		end
 
-	if configManager.getBoolean(configKeys.SERVER_SAVE_NOTIFY_MESSAGE) then
-		Game.broadcastMessage("Server is saving game in " .. (remaningTime/60000) .."  minute(s). Please logout.", MESSAGE_STATUS_WARNING)
-	end
-
-	if remaningTime > 60000 then
-		addEvent(ServerSaveWarning, 60000, remaningTime)
+		if remainingTime >= fiveMinutes * 2 then
+			addEvent(ServerSaveWarning, fiveMinutes, remainingTime)
+		elseif remainingTime > 60000 then
+			addEvent(ServerSaveWarning, 60000, remainingTime)
+		end
 	else
-		addEvent(ServerSave, 60000)
+		local remainingTime = tonumber(time) - 60000
+		if configManager.getBoolean(configKeys.SERVER_SAVE_NOTIFY_MESSAGE) then
+			Game.broadcastMessage("Server is saving game in " .. (remainingTime/60000) .."  minute(s). Please logout.", MESSAGE_STATUS_WARNING)
+		end
+		if remainingTime > 60000 then
+			addEvent(ServerSaveWarning, 60000, remainingTime)
+		else
+			addEvent(ServerSave, 60000)
+		end
 	end
 end
 
 function onTime(interval)
-	local remaningTime = configManager.getNumber(configKeys.SERVER_SAVE_NOTIFY_DURATION) * 60000
+	local remainingTime = configManager.getNumber(configKeys.SERVER_SAVE_NOTIFY_DURATION) * 60000
 	if configManager.getBoolean(configKeys.SERVER_SAVE_NOTIFY_MESSAGE) then
-		Game.broadcastMessage("Server is saving game in " .. (remaningTime/60000) .."  minute(s). Please logout.", MESSAGE_STATUS_WARNING)
+		Game.broadcastMessage("Server is saving game in " .. (remainingTime/60000) .."  minute(s). Please logout.", MESSAGE_STATUS_WARNING)
 	end
 
-	addEvent(ServerSaveWarning, 60000, remaningTime)
+	addEvent(ServerSaveWarning, 60000 * 5, remainingTime)
 	return not configManager.getBoolean(configKeys.SERVER_SAVE_SHUTDOWN)
 end

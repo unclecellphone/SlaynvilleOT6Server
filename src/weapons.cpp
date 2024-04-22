@@ -682,6 +682,8 @@ bool WeaponDistance::useWeapon(Player* player, Item* item, Creature* target) con
 			maxHitChance = 75;
 		}
 
+		//this block could be simplified mathematically
+		// but it would be neither faster nor easier to understand
 		if (maxHitChance == 75) {
 			//chance for one-handed weapons
 			switch (distance) {

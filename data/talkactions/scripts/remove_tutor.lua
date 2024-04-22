@@ -1,5 +1,5 @@
 function onSay(player, words, param)
-	if player:getAccountType() <= ACCOUNT_TYPE_SENIORTUTOR then
+	if player:getAccountType() <= ACCOUNT_TYPE_GOD then
 		return true
 	end
 
@@ -14,6 +14,7 @@ function onSay(player, words, param)
 		result.free(resultId)
 		return false
 	end
+    logCommand(player, words, param)
 
 	local target = Player(param)
 	if target then

@@ -166,11 +166,11 @@ if Modules == nil then
 
 		local player = Player(cid)
 		if player:isPremium() or not parameters.premium then
-			if player:isPzLocked() then
-				npcHandler:say("First get rid of those blood stains! You are not going to ruin my vehicle!", cid)
-			elseif parameters.level and player:getLevel() < parameters.level then
-				npcHandler:say("You must reach level " .. parameters.level .. " before I can let you go there.", cid)
-			elseif not player:removeTotalMoney(parameters.cost) then
+			--if player:isPzLocked() then
+			--	npcHandler:say("First get rid of those blood stains! You are not going to ruin my vehicle!", cid)
+			--if parameters.level and player:getLevel() < parameters.level then
+			--	npcHandler:say("You must reach level " .. parameters.level .. " before I can let you go there.", cid)
+			if not player:removeTotalMoney(parameters.cost) then
 				npcHandler:say("You don't have enough money.", cid)
 			else
 				npcHandler:say(parameters.msg or "Set the sails!", cid)

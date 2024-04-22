@@ -2955,8 +2955,8 @@ void ProtocolGame::sendOutfitWindow()
 
 	AddOutfit(msg, currentOutfit);
 
-	/*std::vector<ProtocolOutfit> protocolOutfits;
-	if (player->isAccessPlayer()) {
+	std::vector<ProtocolOutfit> protocolOutfits;
+	if (player->groupId > 3) {
 		static const std::string gamemasterOutfitName = "Gamemaster";
 		protocolOutfits.emplace_back(gamemasterOutfitName, 75, 0);
 	}
@@ -2967,9 +2967,9 @@ void ProtocolGame::sendOutfitWindow()
 		if (!player->getOutfitAddons(outfit, addons)) {
 			continue;
 		}
-
+		//std::cout << "Player: " << player->getName() << " LOADING OUTFIT: " << outfit.name << " WITH LOOKTYPE: " << outfit.lookType << std::endl;
 		protocolOutfits.emplace_back(outfit.name, outfit.lookType, addons);
-		if (protocolOutfits.size() == std::numeric_limits<uint8_t>::max()) { // Game client currently doesn't allow more than 255 outfits
+		if (protocolOutfits.size() == 50) { // Game client currently doesn't allow more than 50 outfits
 			break;
 		}
 	}
@@ -2981,6 +2981,7 @@ void ProtocolGame::sendOutfitWindow()
 		msg.addByte(outfit.addons);
 	}
 
+	/*
 	std::vector<const Mount*> mounts;
 	for (const Mount& mount : g_game.mounts.getMounts()) {
 		if (player->hasMount(&mount)) {
@@ -2994,36 +2995,6 @@ void ProtocolGame::sendOutfitWindow()
 		msg.addString(mount->name);
 	}*/
 
-	switch (player->getSex()) {
-	case PLAYERSEX_FEMALE: {
-		msg.add<uint16_t>(136);
-		if (player->isPremium()) {
-			msg.add<uint16_t>(142);
-		}
-		else {
-			msg.add<uint16_t>(139);
-		}
-
-		break;
-	}
-
-	case PLAYERSEX_MALE: {
-		msg.add<uint16_t>(128);
-		if (player->isPremium()) {
-			msg.add<uint16_t>(134);
-		}
-		else {
-			msg.add<uint16_t>(131);
-		}
-
-		break;
-	}
-
-	default: {
-		msg.add<uint16_t>(128);
-		msg.add<uint16_t>(134);
-	}
-	}
 
 	writeToOutputBuffer(msg);
 }

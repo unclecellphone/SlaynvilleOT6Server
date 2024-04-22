@@ -102,36 +102,36 @@ elseif talk_state == 1 and msgcontains(msg, '') then
 	talk_state = 0
 
 elseif msgcontains(msg, 'human') then
-	npcHandler:story("I used to have illusions about you humans. I thought humans were good, noble creatures. ...", cid)
+	npcHandler:say("I used to have illusions about you humans. I thought humans were good, noble creatures. ...", cid)
 	talk_state = 0
 	addEvent(message11, 5000, pos)
 elseif msgcontains(msg, 'efreet') then
-	npcHandler:story("The efreet are those djinn who never fell for Daraman's insidious propaganda. I wish I would have been as smart from the start. ...", cid)
+	npcHandler:say("The efreet are those djinn who never fell for Daraman's insidious propaganda. I wish I would have been as smart from the start. ...", cid)
 	talk_state = 0
 	addEvent(message21, 5000, pos)
 elseif msgcontains(msg, 'marid') then
-	npcHandler:story("Those among my brothers and sisters who still do not see the truth call themselves the Marid. I used to be one of them, but I left them when the truth dawned upon me. ...", cid)
+	npcHandler:say("Those among my brothers and sisters who still do not see the truth call themselves the Marid. I used to be one of them, but I left them when the truth dawned upon me. ...", cid)
 	talk_state = 0
 	addEvent(message31, 5000, pos)
 elseif msgcontains(msg, 'gabel') then
-	npcHandler:story("Gabel is a kind-hearted, honest djinn. I would hate to see him die just because he believes in Daraman's lies. ...", cid)
+	npcHandler:say("Gabel is a kind-hearted, honest djinn. I would hate to see him die just because he believes in Daraman's lies. ...", cid)
 	talk_state = 0
 	addEvent(message41, 5000, pos)
 elseif msgcontains(msg, 'malor') then
-	npcHandler:story("Malor is overambitious and unnecessarily cruel, but he is the only djinn who could unite our race, so I follow him. ...", cid)
+	npcHandler:say("Malor is overambitious and unnecessarily cruel, but he is the only djinn who could unite our race, so I follow him. ...", cid)
 	talk_state = 0
 	addEvent(message51, 5000, pos)
 elseif msgcontains(msg, "mal'ouquah") then
-	npcHandler:story("I do not like this place. But then it does not really matter where I am. I have a forge and I don't see any humans. That's all I need. ...", cid)
+	npcHandler:say("I do not like this place. But then it does not really matter where I am. I have a forge and I don't see any humans. That's all I need. ...", cid)
 	talk_state = 0
 	addEvent(message61, 5000, pos)	
 	
 elseif msgcontains(msg, "ashta'daramai") then
-	npcHandler:story("Ashta'daramai is Gabel's fortress which lies to the north. ...", cid)
+	npcHandler:say("Ashta'daramai is Gabel's fortress which lies to the north. ...", cid)
 	talk_state = 0
 	addEvent(message71, 5000, pos)	
 elseif msgcontains(msg, "zathroth") then
-	npcHandler:story("Legend has it that Zathroth was trying to make us beings of unalloyed evil, but he found us to be impure, so he abandoned us and started over. ...", cid)
+	npcHandler:say("Legend has it that Zathroth was trying to make us beings of unalloyed evil, but he found us to be impure, so he abandoned us and started over. ...", cid)
 	talk_state = 0
 	addEvent(message81, 5000, pos)	
 	

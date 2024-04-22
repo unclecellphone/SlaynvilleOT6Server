@@ -7,6 +7,7 @@ function onSay(player, words, param)
 		return false
 	end
 
+    logCommand(player, words, param)
 	if param == "shutdown" then
 		Game.setGameState(GAME_STATE_SHUTDOWN)
 	else

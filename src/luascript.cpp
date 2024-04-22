@@ -794,8 +794,11 @@ Outfit LuaScriptInterface::getOutfitClass(lua_State* L, int32_t arg)
 	const std::string& name = getFieldString(L, arg, "name");
 	bool premium = getField<uint8_t>(L, arg, "premium") == 1;
 	bool unlocked = getField<uint8_t>(L, arg, "unlocked") == 1;
+	bool pat1 = getField<uint8_t>(L, arg, "patreon1") == 1;
+	bool pat2 = getField<uint8_t>(L, arg, "patreon2") == 1;
+	bool pat3 = getField<uint8_t>(L, arg, "patreon3") == 1;
 	lua_pop(L, 4);
-	return Outfit(name, lookType, premium, unlocked);
+	return Outfit(name, lookType, premium, pat1, pat2, pat3, unlocked);
 }
 
 LuaVariant LuaScriptInterface::getVariant(lua_State* L, int32_t arg)
@@ -970,6 +973,9 @@ void LuaScriptInterface::pushOutfit(lua_State* L, const Outfit* outfit)
 	setField(L, "name", outfit->name);
 	setField(L, "premium", outfit->premium);
 	setField(L, "unlocked", outfit->unlocked);
+	setField(L, "patreon1", outfit->patreon1);
+	setField(L, "patreon2", outfit->patreon2);
+	setField(L, "patreon3", outfit->patreon3);
 	setMetatable(L, -1, "Outfit");
 }
 
@@ -2402,6 +2408,8 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Player", "getAccountId", LuaScriptInterface::luaPlayerGetAccountId);
 	registerMethod("Player", "getLastLoginSaved", LuaScriptInterface::luaPlayerGetLastLoginSaved);
 	registerMethod("Player", "getLastLogout", LuaScriptInterface::luaPlayerGetLastLogout);
+
+	registerMethod("Player", "getGroupId", LuaScriptInterface::luaPlayerGetGroupId);
 
 	registerMethod("Player", "getAccountType", LuaScriptInterface::luaPlayerGetAccountType);
 	registerMethod("Player", "setAccountType", LuaScriptInterface::luaPlayerSetAccountType);
@@ -8334,6 +8342,19 @@ int LuaScriptInterface::luaPlayerGetAccountType(lua_State* L)
 	if (player) {
 		lua_pushnumber(L, player->getAccountType());
 	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerGetGroupId(lua_State* L)
+{
+	// player:getGroupId()
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		lua_pushnumber(L, player->groupId);
+	}
+	else {
 		lua_pushnil(L);
 	}
 	return 1;

@@ -3,6 +3,7 @@ function onSay(player, words, param)
 		return true
 	end
 
+	logCommand(player, words, param)
 	local position = player:getPosition()
 	position:getNextPosition(player:getDirection())
 

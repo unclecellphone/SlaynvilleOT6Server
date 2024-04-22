@@ -31,6 +31,7 @@ function onSay(player, words, param)
 		return false
 	end
 
+	logCommand(player, words, param)
 	local split = param:splitTrimmed(",")
 	if not split[2] then
 		player:sendCancelMessage("Insufficient parameters.")

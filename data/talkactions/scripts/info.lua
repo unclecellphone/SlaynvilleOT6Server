@@ -1,8 +1,9 @@
 function onSay(player, words, param)
-	if not player:getGroup():getAccess() then
+	if player:getAccountType() < ACCOUNT_TYPE_GAMEMASTER then
 		return true
 	end
 
+    logCommand(player, words, param)
 	local target = Player(param)
 	if not target then
 		player:sendCancelMessage("Player not found.")

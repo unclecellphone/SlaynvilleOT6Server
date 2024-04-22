@@ -3,11 +3,13 @@
 	<!-- commands -->
 	<talkaction words="/attr" separator=" " script="attributes.lua" />
 	<talkaction words="/ban" separator=" " script="ban.lua" />
+	<talkaction words="/namelock" separator=" " script="namelock.lua" />
 	<talkaction words="/ipban" separator=" " script="ipban.lua" />
 	<talkaction words="/unban" separator=" " script="unban.lua" />
 	<talkaction words="/up" script="up.lua" />
 	<talkaction words="/down" script="down.lua" />
 	<talkaction words="/c" separator=" " script="teleport_creature_here.lua" />
+	<talkaction words="/jail" separator=" " script="goToJail.lua" />
 	<talkaction words="/goto" separator=" " script="teleport_to_creature.lua" />
 	<talkaction words="/owner" separator=" " script="owner.lua" />
 	<talkaction words="/t" script="teleport_home.lua" />

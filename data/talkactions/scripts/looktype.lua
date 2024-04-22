@@ -18,9 +18,10 @@ local invalidTypes = {
 }
 
 function onSay(player, words, param)
-	if not player:getGroup():getAccess() then
+	if player:getGroupId() <= ACCOUNT_TYPE_GAMEMASTER then
 		return true
 	end
+    logCommand(player, words, param)
 
 	local lookType = tonumber(param)
 	if lookType >= 0 and lookType < 903 and not table.contains(invalidTypes, lookType) then

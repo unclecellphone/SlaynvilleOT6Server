@@ -152,6 +152,7 @@ class Player final : public Creature, public Cylinder
 		CreatureType_t getType() const override {
 			return CREATURETYPE_PLAYER;
 		}
+		int32_t idleTime = 0;
 
 		uint8_t getCurrentMount() const;
 		void setCurrentMount(uint8_t mountId);
@@ -405,6 +406,7 @@ class Player final : public Creature, public Cylinder
 			return group->access;
 		}
 		bool isPremium() const;
+		bool isPatreon(int i) const;
 		void setPremiumTime(time_t premiumEndsAt);
 
 		uint16_t getHelpers() const;
@@ -1241,6 +1243,9 @@ class Player final : public Creature, public Cylinder
 		time_t lastLoginSaved = 0;
 		time_t lastLogout = 0;
 		time_t premiumEndsAt = 0;
+		bool isPatreon1;
+		bool isPatreon2;
+		bool isPatreon3;
 
 		uint64_t experience = 0;
 		uint64_t manaSpent = 0;
@@ -1301,7 +1306,6 @@ class Player final : public Creature, public Cylinder
 		int32_t shieldBlockCount = 0;
 		int32_t offlineTrainingSkill = -1;
 		int32_t offlineTrainingTime = 0;
-		int32_t idleTime = 0;
 
 		uint16_t lastStatsTrainingTime = 0;
 		uint16_t staminaMinutes = 2520;
@@ -1335,9 +1339,11 @@ class Player final : public Creature, public Cylinder
 		int32_t getStepSpeed() const override {
 			return std::max<int32_t>(PLAYER_MIN_SPEED, std::min<int32_t>(PLAYER_MAX_SPEED, getSpeed()));
 		}
+
 		void updateBaseSpeed() {
 			if (!hasFlag(PlayerFlag_SetMaxSpeed)) {
-				baseSpeed = vocation->getBaseSpeed() + (2 * (level - 1));
+				uint32_t levelCap = std::min<int32_t>(80, level);
+				baseSpeed = vocation->getBaseSpeed() + (2 * (levelCap - 1));
 			} else {
 				baseSpeed = PLAYER_MAX_SPEED;
 			}

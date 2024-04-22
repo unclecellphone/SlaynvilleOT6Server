@@ -1,6 +1,7 @@
 function onCastSpell(creature, variant, isHotkey)
 	local target = Creature(variant:getNumber())
 	if not target or not target:isMonster() then
+		print('1')
 		creature:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		creature:getPosition():sendMagicEffect(CONST_ME_POFF)
 		return false
@@ -9,6 +10,7 @@ function onCastSpell(creature, variant, isHotkey)
 	local monsterType = target:getType()
 	if not creature:hasFlag(PlayerFlag_CanConvinceAll) then
 		if not monsterType:isConvinceable() then
+			print('1')
 			creature:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 			creature:getPosition():sendMagicEffect(CONST_ME_POFF)
 			return false

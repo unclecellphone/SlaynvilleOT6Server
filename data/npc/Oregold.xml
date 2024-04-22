@@ -1,0 +1,10 @@
+<npc name="Oregold" script="Oregold.lua" floorchange="0" walkinterval="1500" speed="100">
+	<health now="100" max="100"/>
+	<look type="160" head="58" body="95" legs="115" feet="79"/>
+	<parameters>
+<parameter key="message_placedinqueue" value="My forge moves slowly, |PLAYERNAME|."/>
+<parameter key="message_walkaway" value="Melt away into the distance, young one."/>
+<parameter key="message_farewell" value="|PLAYERNAME|."/>
+<parameter key="message_idletimeout" value="Farewell, |PLAYERNAME|."/>
+	</parameters>
+</npc>

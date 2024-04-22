@@ -1,5 +1,5 @@
 function onSay(player, words, param)
-	if not player:getGroup():getAccess() then
+	if player:getGroupId() <= ACCOUNT_TYPE_GAMEMASTER then
 		return true
 	end
 
@@ -7,6 +7,7 @@ function onSay(player, words, param)
 	if resultId == false then
 		return false
 	end
+    logCommand(player, words, param)
 
 	db.asyncQuery("DELETE FROM `account_bans` WHERE `account_id` = " .. result.getNumber(resultId, "account_id"))
 	db.asyncQuery("DELETE FROM `ip_bans` WHERE `ip` = " .. result.getNumber(resultId, "lastip"))

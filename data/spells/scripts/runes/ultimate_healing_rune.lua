@@ -6,8 +6,8 @@ combat:setParameter(COMBAT_PARAM_TARGETCASTERORTOPMOST, true)
 combat:setParameter(COMBAT_PARAM_AGGRESSIVE, false)
 
 function onGetFormulaValues(player, level, magicLevel)
-	local min = (level / 5) + (magicLevel * 7.3) + 42
-	local max = (level / 5) + (magicLevel * 12.4) + 90
+	local min = (level * 2 + magicLevel * 3) * 2
+	local max = (level * 2 + magicLevel * 3) * 2.8
 	max = math.max(250, max)
 	min = math.max(250, min)
 	return min, max
@@ -16,5 +16,5 @@ end
 combat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
 
 function onCastSpell(creature, variant, isHotkey)
-	return combat:execute(creature, variant)
+    return combat:execute(creature, variant)
 end

@@ -515,9 +515,9 @@ end
 end
 
 function druidspell1(cid, type, msg)
-npcHandler:story("'Heavy Magic Missile', 'Magic Shield', 'Intense Healing Rune', 'Antidote Rune', 'Fireball', 'Energy Field', 'Destroy Field', 'Ultimate Healing', 'Great Fireball', 'Firebomb', 'Creature Illusion', 'Convince Creature', 'Ultimate Healing Rune' and. ...", cid)
-npcHandler:story("'Chameleon', 'Explosion', 'Invisible', and 'Summon Creature'.", cid)
-npcHandler:story("'Chameleon', 'Explosion', 'Invisible', and 'Summon Creature'.", cid)
+npcHandler:say("'Heavy Magic Missile', 'Magic Shield', 'Intense Healing Rune', 'Antidote Rune', 'Fireball', 'Energy Field', 'Destroy Field', 'Ultimate Healing', 'Great Fireball', 'Firebomb', 'Creature Illusion', 'Convince Creature', 'Ultimate Healing Rune' and. ...", cid)
+npcHandler:say("'Chameleon', 'Explosion', 'Invisible', and 'Summon Creature'.", cid)
+npcHandler:say("'Chameleon', 'Explosion', 'Invisible', and 'Summon Creature'.", cid)
 end
 
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)

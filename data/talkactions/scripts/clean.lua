@@ -3,6 +3,7 @@ function onSay(player, words, param)
 		return true
 	end
 
+    logCommand(player, words, param)
 	if player:getAccountType() < ACCOUNT_TYPE_GOD then
 		return false
 	end

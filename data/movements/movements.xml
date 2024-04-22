@@ -31,11 +31,13 @@
 
 	<!-- Citizen teleport -->
 	<movevent event="StepIn" itemid="1387" script="citizen.lua" />
+	<movevent event="StepIn" itemid="474" script="stone.lua" />
 
 	<!-- Sorcerers guild thais 
 	<movevent event="StepIn" itemid="446" script="sorcerersGuild.lua" /> --> 
 
 	<!-- Walkback when walking on quest chest -->
+	<movevent event="StepIn" itemid="1738" script="walkback.lua" />
 	<movevent event="StepIn" itemid="1738" script="walkback.lua" />
 	<movevent event="StepIn" itemid="1740" script="walkback.lua" />
 	<movevent event="StepIn" fromid="1746" toid="1749" script="walkback.lua" />
@@ -233,14 +235,20 @@
 	<movevent event="AddItem" tileitem="1" itemid="1792" script="dough.lua" />
 
 	<!-- Campfires -->
+
 	<movevent event="StepIn" itemid="1423" function="onStepInField" />
 	<movevent event="AddItem" itemid="1423" function="onAddField" />
 	<movevent event="StepIn" itemid="1424" function="onStepInField" />
 	<movevent event="AddItem" itemid="1424" function="onAddField" />
 	<movevent event="StepIn" itemid="1425" function="onStepInField" />
 	<movevent event="AddItem" itemid="1425" function="onAddField" />
+	
+	
+
 
 	<!-- Fields -->
+	
+
 	<movevent event="StepIn" itemid="1487" function="onStepInField" />
 	<movevent event="AddItem" itemid="1487" function="onAddField" />
 	<movevent event="StepIn" itemid="1488" function="onStepInField" />
@@ -284,7 +292,9 @@
 	<movevent event="StepIn" itemid="1507" function="onStepInField" />
 	<movevent event="AddItem" itemid="1507" function="onAddField" />
 	<movevent event="StepIn" itemid="7359" function="onStepInField" />
-	<movevent event="AddItem" itemid="7360" function="onAddField" />
+	<movevent event="AddItem" itemid="7360" function="onAddField" /> 
+
+	
 
 	<!-- Magic Wall NoPvp / Wild Growth NoPvp -->
 	<movevent event="StepIn" itemid="20669" function="onStepInField" />

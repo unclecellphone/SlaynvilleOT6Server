@@ -435,9 +435,9 @@ talk_state = 0
 --End of the System that does the job after confirm spell--
 
 elseif msgcontains(msg, 'spell') or msgcontains(msg, 'Spell') then
-npcHandler:story("I sell 'Find Person', 'Light', 'Create Food', 'Light Healing', 'Light Magic Missile', 'Antidote', 'Intense Healing', 'Poison Field', 'Great Light', 'Fire Field', 'Heavy Magic Missile' and. ...", cid)
-npcHandler:story("'Magic Shield', 'Intense Healing Rune', 'Antidote Rune', 'Fireball', 'Energy Field', 'Destroy Field', 'Ultimate Healing', 'Great Fireball', 'Firebomb', 'Creature Illusion', 'Convice Creature', 'Ultimate Healing Rune', 'Chameleon' and. ...", cid)
-npcHandler:story("'Explosion', 'Invisible', and 'Summon Creature'.", cid)
+npcHandler:say("I sell 'Find Person', 'Light', 'Create Food', 'Light Healing', 'Light Magic Missile', 'Antidote', 'Intense Healing', 'Poison Field', 'Great Light', 'Fire Field', 'Heavy Magic Missile' and. ...", cid)
+npcHandler:say("'Magic Shield', 'Intense Healing Rune', 'Antidote Rune', 'Fireball', 'Energy Field', 'Destroy Field', 'Ultimate Healing', 'Great Fireball', 'Firebomb', 'Creature Illusion', 'Convice Creature', 'Ultimate Healing Rune', 'Chameleon' and. ...", cid)
+npcHandler:say("'Explosion', 'Invisible', and 'Summon Creature'.", cid)
 talk_state = 0	
 
 end		

@@ -3442,9 +3442,25 @@ void Game::playerShowQuestLine(uint32_t playerId, uint16_t questId)
 	player->sendQuestLine(quest);
 }
 
+std::string trim(const std::string& s) {
+	// Whitespace is one of: space, tab, carriage return,
+	// line feed, form feed, or vertical tab.
+	const char* whitespace = " \t\n\r\f\v";
+	size_t begin = s.find_first_not_of(whitespace);
+	if (begin == std::string::npos) {
+		return std::string{};
+	}
+	size_t end = s.find_last_not_of(whitespace);
+	return std::string{ s.substr(begin, end - begin + 1) };
+}
+
 void Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type,
                      const std::string& receiver, const std::string& text)
 {
+	const char* t = " \t\n\r\f\v";
+	
+	const std::string trimmedText = trim(text);
+	
 	Player* player = getPlayerByID(playerId);
 	if (!player) {
 		return;
@@ -3452,7 +3468,7 @@ void Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type,
 
 	player->resetIdleTime();
 
-	if (playerSaySpell(player, type, text)) {
+	if (playerSaySpell(player, type, trimmedText)) {
 		return;
 	}
 
@@ -3462,7 +3478,7 @@ void Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type,
 		return;
 	}
 
-	if (!text.empty() && text.front() == '/' && player->isAccessPlayer()) {
+	if (!trimmedText.empty() && trimmedText.front() == '/' && player->isAccessPlayer()) {
 		return;
 	}
 
@@ -3473,29 +3489,29 @@ void Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type,
 
 	switch (type) {
 		case TALKTYPE_SAY:
-			internalCreatureSay(player, TALKTYPE_SAY, text, false);
+			internalCreatureSay(player, TALKTYPE_SAY, trimmedText, false);
 			break;
 
 		case TALKTYPE_WHISPER:
-			playerWhisper(player, text);
+			playerWhisper(player, trimmedText);
 			break;
 
 		case TALKTYPE_YELL:
-			playerYell(player, text);
+			playerYell(player, trimmedText);
 			break;
 
 		//case TALKTYPE_PRIVATE_TO:
 		//case TALKTYPE_PRIVATE_RED_TO:
 		case TALKTYPE_PRIVATE:
 		case TALKTYPE_PRIVATE_RED:
-			playerSpeakTo(player, type, receiver, text);
+			playerSpeakTo(player, type, receiver, trimmedText);
 			break;
 
 		case TALKTYPE_CHANNEL_O:
 		case TALKTYPE_CHANNEL_Y:
 		case TALKTYPE_CHANNEL_R1:
 		case TALKTYPE_CHANNEL_R2:
-			g_chat->talkToChannel(*player, type, text, channelId);
+			g_chat->talkToChannel(*player, type, trimmedText, channelId);
 			break;
 
 		/*case TALKTYPE_PRIVATE_PN:
@@ -3504,7 +3520,7 @@ void Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type,
 			*/
 
 		case TALKTYPE_BROADCAST:
-			playerBroadcastMessage(player, text);
+			playerBroadcastMessage(player, trimmedText);
 			break;
 
 		default:

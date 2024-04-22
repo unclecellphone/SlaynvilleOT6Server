@@ -536,14 +536,14 @@ bool Actions::useItemEx(Player* player, const Position& fromPos, const Position&
 			{
 				auto targetID = visibleCreature->getID();
 				auto fireTargetedRune = std::bind(&RuneSpell::executeUseLate, runeAction, player->getID(),  fromPos, runeID,  targetID, toPos, isHotkey);
-				SchedulerTask* task = createSchedulerTask(g_config.getNumber(ConfigManager::EX_ACTIONS_DELAY_INTERVAL) - 0.2f, fireTargetedRune);
+				SchedulerTask* task = createSchedulerTask(g_config.getNumber(ConfigManager::EX_ACTIONS_DELAY_INTERVAL) - 200, fireTargetedRune);
 				g_scheduler.addEvent(task);
 				return true;
 			}
 			else if (!runeAction->getNeedTarget())
 			{
 				auto fireAoERune = std::bind(&RuneSpell::executeUseLate, runeAction, player->getID(), fromPos, runeID, -1, toPos, isHotkey);
-				SchedulerTask* task = createSchedulerTask(g_config.getNumber(ConfigManager::EX_ACTIONS_DELAY_INTERVAL) - 0.2f, fireAoERune);
+				SchedulerTask* task = createSchedulerTask(g_config.getNumber(ConfigManager::EX_ACTIONS_DELAY_INTERVAL) - 200, fireAoERune);
 				g_scheduler.addEvent(task);
 				return true;
 			}

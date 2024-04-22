@@ -100,6 +100,7 @@ class Creature : virtual public Thing
 		static double speedA, speedB, speedC;
 
 		virtual ~Creature();
+		int32_t groupId = 1;
 
 		// non-copyable
 		Creature(const Creature&) = delete;

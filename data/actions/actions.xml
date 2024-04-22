@@ -127,6 +127,8 @@
 	<action itemid="3917" script="furniture_package.lua"/>
 	<action itemid="3918" script="furniture_package.lua"/>
 	<action itemid="3919" script="furniture_package.lua"/>
+	<action itemid="2093" script="waterPipe.lua"/>
+	<action itemid="2099" script="waterPipe.lua"/>
 
 	<action itemid="3920" script="furniture_package.lua"/>
 	<action itemid="3921" script="furniture_package.lua"/>

@@ -745,38 +745,50 @@ bool Player::canSeeGhostMode(const Creature*) const
 
 bool Player::canWalkthrough(const Creature* creature) const
 {
-	if (group->access || creature->isInGhostMode()) {
+	//always walk through gm
+	if (group->access || group->id > 3 || isInGhostMode()) {
 		return true;
 	}
 
-	const Player* player = creature->getPlayer();
-	if (!player || !g_config.getBoolean(ConfigManager::ALLOW_WALKTHROUGH)) {
-		return false;
+	const Player* otherPlayer = creature->getPlayer();
+	if (otherPlayer)
+	{
+		if (otherPlayer->getGroup()->access || otherPlayer->getGroup()->id > 3 || otherPlayer->isInGhostMode())
+		{
+			return true;
+		}
 	}
 
-	const Tile* playerTile = player->getTile();
-	if (!playerTile || (!playerTile->hasFlag(TILESTATE_PROTECTIONZONE) && player->getLevel() > static_cast<uint32_t>(g_config.getNumber(ConfigManager::PROTECTION_LEVEL)))) {
-		return false;
-	}
+	return false;
+	//const Player* player = creature->getPlayer();
+	//if (!player || !g_config.getBoolean(ConfigManager::ALLOW_WALKTHROUGH)) {
+	//	return false;
+	//}
 
-	const Item* playerTileGround = playerTile->getGround();
-	if (!playerTileGround || !playerTileGround->hasWalkStack()) {
-		return false;
-	}
+	//const Tile* playerTile = player->getTile();
+	//if (!playerTile) {
+	//if (!playerTile || (!playerTile->hasFlag(TILESTATE_PROTECTIONZONE) && player->getLevel() > static_cast<uint32_t>(g_config.getNumber(ConfigManager::PROTECTION_LEVEL)))) {
+	//	return false;
+	//}
 
-	Player* thisPlayer = const_cast<Player*>(this);
-	if ((OTSYS_TIME() - lastWalkthroughAttempt) > 2000) {
-		thisPlayer->setLastWalkthroughAttempt(OTSYS_TIME());
-		return false;
-	}
+	//const Item* playerTileGround = playerTile->getGround();
+	//if (!playerTileGround || !playerTileGround->hasWalkStack()) {
+	//	return false;
+	//}
+	//return false;
+	//Player* thisPlayer = const_cast<Player*>(this);
+	//if ((OTSYS_TIME() - lastWalkthroughAttempt) > 2000) {
+		//thisPlayer->setLastWalkthroughAttempt(OTSYS_TIME());
+		//return false;
+	//}
 
-	if (creature->getPosition() != lastWalkthroughPosition) {
-		thisPlayer->setLastWalkthroughPosition(creature->getPosition());
-		return false;
-	}
+	//if (creature->getPosition() != lastWalkthroughPosition) {
+		//thisPlayer->setLastWalkthroughPosition(creature->getPosition());
+		//return false;
+	//}
 
-	thisPlayer->setLastWalkthroughPosition(creature->getPosition());
-	return true;
+	//thisPlayer->setLastWalkthroughPosition(creature->getPosition());
+	//return true;
 }
 
 bool Player::canWalkthroughEx(const Creature* creature) const
@@ -2065,8 +2077,16 @@ void Player::death(Creature* lastHitCreature)
 
 		//double deathLossPercent = getLostPercent() * (unfairFightReduction / 100.);
 		double deathLossPercent = getLostPercent();
-		removeManaSpent(static_cast<uint64_t>((sumMana + manaSpent) * deathLossPercent), false);
+		
 
+
+		double skillLossPercent = 10;
+		if (isPromoted()) {
+			skillLossPercent -= 3;
+		}
+		skillLossPercent = skillLossPercent / 100;
+
+		removeManaSpent(static_cast<uint64_t>((sumMana + manaSpent) * skillLossPercent), false);
 		//Skill loss
 		for (uint8_t i = SKILL_FIRST; i <= SKILL_LAST; ++i) { //for each skill
 			uint64_t sumSkillTries = 0;
@@ -2076,7 +2096,7 @@ void Player::death(Creature* lastHitCreature)
 
 			sumSkillTries += skills[i].tries;
 
-			removeSkillTries(static_cast<skills_t>(i), sumSkillTries * deathLossPercent, false);
+			removeSkillTries(static_cast<skills_t>(i), sumSkillTries * skillLossPercent, false);
 		}
 
 		//Level loss
@@ -2110,7 +2130,7 @@ void Player::death(Creature* lastHitCreature)
 			}
 		}
 
-		 if (blessings.test(5)) {
+		if (blessings.test(5)) {
 			if (lastHitPlayer) {
 				blessings.reset(5);
 			} else {
@@ -3347,8 +3367,10 @@ uint64_t Player::getGainedExperience(Creature* attacker) const
 {
 	if (g_config.getBoolean(ConfigManager::EXPERIENCE_FROM_PLAYERS)) {
 		Player* attackerPlayer = attacker->getPlayer();
+		if (level <= 15)
+			return 0;
 		if (attackerPlayer && attackerPlayer != this && skillLoss && std::abs(static_cast<int32_t>(attackerPlayer->getLevel() - level)) <= g_config.getNumber(ConfigManager::EXP_FROM_PLAYERS_LEVEL_RANGE)) {
-			return std::max<uint64_t>(0, std::floor(getLostExperience() * getDamageRatio(attacker) * 0.25));
+			return std::max<uint64_t>(0, std::floor(getLostExperience() * getDamageRatio(attacker) * 0.4));
 		}
 	}
 	return 0;
@@ -3779,12 +3801,27 @@ void Player::changeSoul(int32_t soulChange)
 
 bool Player::canWear(uint32_t lookType, uint8_t addons) const
 {
-	if (group->access) {
+	if (group->access || getGroup()->id > 3) {
 		return true;
 	}
 
 	const Outfit* outfit = Outfits::getInstance().getOutfitByLookType(sex, lookType);
 	if (!outfit) {
+		return false;
+	}
+
+	if (outfit->patreon1 && !isPatreon(0))
+	{
+		return false;
+	}
+
+	if (outfit->patreon2 && !isPatreon(1))
+	{
+		return false;
+	}
+
+	if (outfit->patreon3 && !isPatreon(2))
+	{
 		return false;
 	}
 
@@ -3811,6 +3848,21 @@ bool Player::hasOutfit(uint32_t lookType, uint8_t addons)
 {
 	const Outfit* outfit = Outfits::getInstance().getOutfitByLookType(sex, lookType);
 	if (!outfit) {
+		return false;
+	}
+
+	if (outfit->patreon1 && !isPatreon(0))
+	{
+		return false;
+	}
+
+	if (outfit->patreon2 && !isPatreon(1))
+	{
+		return false;
+	}
+
+	if (outfit->patreon3 && !isPatreon(2))
+	{
 		return false;
 	}
 
@@ -4015,12 +4067,11 @@ bool Player::isPromoted() const
 
 double Player::getLostPercent() const
 {
-	int32_t deathLosePercent = g_config.getNumber(ConfigManager::DEATH_LOSE_PERCENT);
+	int32_t deathLosePercent = 12; // g_config.getNumber(ConfigManager::DEATH_LOSE_PERCENT);
 	if (deathLosePercent != -1) {
 		if (isPromoted()) {
-			deathLosePercent -= 3;
+			deathLosePercent -= 2;
 		}
-
 		deathLosePercent -= blessings.count();
 		return std::max<int32_t>(0, deathLosePercent) / 100.;
 	}
@@ -4099,6 +4150,21 @@ bool Player::isPremium() const
 	}
 
 	return premiumEndsAt > time(nullptr);
+}
+
+bool Player::isPatreon(int i) const
+{
+	switch (i)
+	{
+		case 0:
+			return isPatreon1;
+		case 1:
+			return isPatreon2;
+		case 2:
+			return isPatreon3;
+		default:
+			return false; 
+	}
 }
 
 void Player::setPremiumTime(time_t premiumEndsAt)

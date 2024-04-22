@@ -1892,7 +1892,7 @@
 		<attribute key="decayTo" value="1488" />
 		<attribute key="duration" value="120" />
 		<attribute key="field" value="fire">
-			<attribute key="damage" value="20" />
+			<attribute key="initdamage" value="20" />
 			<attribute key="ticks" value="10000" />
 			<attribute key="count" value="7" />
 			<attribute key="damage" value="10" />
@@ -1929,7 +1929,7 @@
 		<attribute key="decayTo" value="0" />
 		<attribute key="duration" value="120" />
 		<attribute key="field" value="energy">
-			<attribute key="damage" value="30" />
+			<attribute key="initdamage" value="30" />
 			<attribute key="ticks" value="10000" />
 			<attribute key="damage" value="25" />
 		</attribute>
@@ -1938,7 +1938,7 @@
 		<attribute key="type" value="magicfield" />
 		<attribute key="replaceable" value="0" />
 		<attribute key="field" value="fire">
-			<attribute key="damage" value="20" />
+			<attribute key="initdamage" value="20" />
 			<attribute key="ticks" value="10000" />
 			<attribute key="count" value="7" />
 			<attribute key="damage" value="10" />
@@ -1962,7 +1962,7 @@
 		<attribute key="type" value="magicfield" />
 		<attribute key="replaceable" value="0" />
 		<attribute key="field" value="energy">
-			<attribute key="damage" value="30" />
+			<attribute key="initdamage" value="30" />
 			<attribute key="ticks" value="10000" />
 			<attribute key="damage" value="25" />
 		</attribute>
@@ -2555,7 +2555,9 @@
 		<attribute key="type" value="bed"/>
 		<attribute key="partnerDirection" value="north" />
 		<attribute key="maleSleeper" value="1763" />
-
+	</item>
+	<item id="11062" article="a" name="stone tile">
+		<attribute key="walkStack" value="0" />
 	</item>
 	<item id="1756" article="a" name="cot">
 		<attribute key="type" value="bed"/>
@@ -2649,7 +2651,7 @@
 	<item id="1777" article="a" name="dustbin">
 		<attribute key="effect" value="fire"/>
 		<attribute key="type" value="trashholder"/>
-		<attribute key="description" value="You see the silvery movement of fish."/>
+		<attribute key="description" value="Please place all complaints here."/>
 	</item>
 	<item id="1778" article="a" name="big wine cask">
 		<attribute key="fluidSource" value="wine"/>
@@ -3662,13 +3664,15 @@
 		<attribute key="absorbPercentEnergy" value="10"/>
 	</item>
 	<item id="2162" article="a" name="magic lightwand">
-		<attribute key="weight" value="1500"/>
+		<attribute key="weight" value="150"/>
 		<attribute key="stopduration" value="1"/>
+		<attribute key="slotType" value="ring"/>
 		<attribute key="showduration" value="1"/>
 	</item>
 	<item id="2163" article="a" name="magic lightwand">
-		<attribute key="weight" value="1500"/>
+		<attribute key="weight" value="150"/>
 		<attribute key="decayTo" value="0"/>
+		<attribute key="slotType" value="ring"/>
 		<attribute key="showduration" value="1"/>
 		<attribute key="duration" value="3000"/>
 	</item>
@@ -4414,6 +4418,11 @@
 		<attribute key="description" value="You see the familyname Windtrouser engraved on this brooch."/>
 		<attribute key="weight" value="110"/>
 	</item>
+	<!-- <item id="2318" article="a" name="Banor's Light Brooch">
+		<attribute key="description" value="You see the familyname BANOR engraved on this radiant brooch."/>
+		<attribute key="weight" value="11"/>
+		<attribute key="slotType" value="necklace"/>
+	</item>  -->
 	<item id="2319" article="a" name="dragonfetish">
 		<attribute key="weight" value="490"/>
 	</item>
@@ -4523,8 +4532,9 @@
 		<attribute key="weight" value="150"/>
 		<attribute key="description" value="The report is written in some coded language."/>
 	</item>
-	<item id="2346" article="a" name="tear of Daraman">
-		<attribute key="weight" value="30"/>
+	<item id="2346" article="a" name="Supporter's Light">
+		<attribute key="weight" value="300"/>
+		<attribute key="slotType" value="ring"/>
 	</item>
 	<item id="2347" article="a" name="cookbook">
 		<attribute key="weight" value="1500"/>
@@ -4579,7 +4589,7 @@
 		<attribute key="weight" value="1300"/>
 		<attribute key="description" value="It is the djinn leader's sleeping lamp."/>
 	</item>
-	<item id="2357" article="a" name="ring of wishes">
+	<item id="2357" article="a" name="ring of light">
 		<attribute key="weight" value="90"/>
 		<attribute key="slotType" value="ring"/>
 	</item>
@@ -4686,8 +4696,8 @@
 	</item>
 	<item id="2383" article="a" name="spike sword">
 		<attribute key="weight" value="5000"/>
-		<attribute key="defense" value="20"/>
-		<attribute key="attack" value="25"/>
+		<attribute key="defense" value="21"/>
+		<attribute key="attack" value="24"/>
 		<attribute key="weaponType" value="sword"/>
 	</item>
 	<item id="2384" article="a" name="rapier">
@@ -4732,20 +4742,20 @@
 		<attribute key="description" value="It is the magic Cyclopmania Sword."/>
 		<attribute key="weight" value="4300"/>
 		<attribute key="defense" value="40"/>
-		<attribute key="attack" value="55"/>
+		<attribute key="attack" value="60"/>
 		<attribute key="weaponType" value="sword"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
 	<item id="2391" article="a" name="war hammer">
 		<attribute key="weight" value="8500"/>
 		<attribute key="defense" value="10"/>
-		<attribute key="attack" value="46"/>
+		<attribute key="attack" value="45"/>
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
 	<item id="2392" article="a" name="fire sword">
 		<attribute key="description" value="The blade is a magic flame."/>
-		<attribute key="weight" value="2300"/>
+		<attribute key="weight" value="1500"/>
 		<attribute key="defense" value="20"/>
 		<attribute key="attack" value="35"/>
 		<attribute key="weaponType" value="sword"/>
@@ -4826,7 +4836,7 @@
 	<item id="2404" article="a" name="combat knife">
 		<attribute key="weight" value="870"/>
 		<attribute key="defense" value="6"/>
-		<attribute key="attack" value="8"/>
+		<attribute key="attack" value="7"/>
 		<attribute key="weaponType" value="sword"/>
 	</item>
 	<item id="2405" article="a" name="sickle">
@@ -4858,7 +4868,7 @@
 	</item>
 	<item id="2409" article="a" name="serpent sword">
 		<attribute key="weight" value="4100"/>
-		<attribute key="defense" value="15"/>
+		<attribute key="defense" value="16"/>
 		<attribute key="attack" value="26"/>
 		<attribute key="weaponType" value="sword"/>
 	</item>
@@ -4891,8 +4901,8 @@
 	<item id="2414" article="a" name="dragon lance">
 		<attribute key="description" value="The extraordinary sharp blade penetrates every armor."/>
 		<attribute key="weight" value="6700"/>
-		<attribute key="defense" value="16"/>
-		<attribute key="attack" value="49"/>
+		<attribute key="defense" value="13"/>
+		<attribute key="attack" value="48"/>
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
@@ -5168,14 +5178,14 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammoType" value="bolt"/>
-		<attribute key="range" value="5"/>
+		<attribute key="range" value="7"/>
 	</item>
 	<item id="2456" article="a" name="bow">
 		<attribute key="weight" value="3100"/>
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammoType" value="arrow"/>
-		<attribute key="range" value="6"/>
+		<attribute key="range" value="7"/>
 	</item>
 	<item id="2457" article="a" name="steel helmet">
 		<attribute key="weight" value="4600"/>
@@ -5251,12 +5261,12 @@
 	<item id="2471" article="a" name="golden helmet">
 		<attribute key="description" value="It is the famous Helmet of the Stars."/>
 		<attribute key="weight" value="3200"/>
-		<attribute key="armor" value="12"/>
+		<attribute key="armor" value="13"/>
 		<attribute key="slotType" value="head"/>
 	</item>
 	<item id="2472" article="a" name="magic plate armor">
 		<attribute key="weight" value="8500"/>
-		<attribute key="armor" value="17"/>
+		<attribute key="armor" value="18"/>
 		<attribute key="slotType" value="body"/>
 	</item>
 	<item id="2473" article="a" name="viking helmet">
@@ -5514,13 +5524,13 @@
 	<item id="2522" article="a" name="great shield">
 		<attribute key="description" value="The shield is made of dragon scales."/>
 		<attribute key="weight" value="8400"/>
-		<attribute key="defense" value="38"/>
+		<attribute key="defense" value="40"/>
 		<attribute key="weaponType" value="shield"/>
 	</item>
 	<item id="2523" article="a" name="blessed shield">
 		<attribute key="description" value="The shield grants divine protection."/>
 		<attribute key="weight" value="6800"/>
-		<attribute key="defense" value="40"/>
+		<attribute key="defense" value="50"/>
 		<attribute key="weaponType" value="shield"/>
 	</item>
 	<item id="2524" article="an" name="ornamented shield">
@@ -7909,7 +7919,7 @@
 	<item id="3064" article="a" name="dead human">
 		<attribute key="weight" value="50000"/>
 		<attribute key="decayTo" value="0"/>
-		<attribute key="duration" value="900"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3065" article="a" name="dead human" editorsuffix=" (Player)">
@@ -8255,43 +8265,43 @@
 	<item id="3128" article="a" name="dead human">
 		<attribute key="containerSize" value="10"/>
 		<attribute key="decayTo" value="3129"/>
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3129" article="a" name="dead human">
 		<attribute key="containerSize" value="8"/>
 		<attribute key="decayTo" value="3130"/>
-		<attribute key="duration" value="900"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3130" article="a" name="dead human">
 		<attribute key="weight" value="120000"/>
 		<attribute key="decayTo" value="3131"/>
-		<attribute key="duration" value="30"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3131" article="a" name="dead human">
 		<attribute key="weight" value="120000"/>
 		<attribute key="decayTo" value="3132"/>
-		<attribute key="duration" value="30"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3132" article="a" name="dead human">
 		<attribute key="weight" value="120000"/>
 		<attribute key="decayTo" value="3133"/>
-		<attribute key="duration" value="30"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3133" article="a" name="dead human">
 		<attribute key="weight" value="60000"/>
 		<attribute key="decayTo" value="3134"/>
-		<attribute key="duration" value="30"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3134" article="a" name="dead human">
 		<attribute key="weight" value="60000"/>
 		<attribute key="decayTo" value="0"/>
-		<attribute key="duration" value="600"/>
+		<attribute key="duration" value="1800"/>
 		<attribute key="corpseType" value="blood"/>
 	</item>
 	<item id="3135" article="a" name="ladder">

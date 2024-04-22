@@ -1,4 +1,4 @@
-<npc name="Starscream" script="Starscream.lua" floorchange="0" walkinterval="1500" speed="100">
+<npc name="Star Scream" script="Starscream.lua" floorchange="0" walkinterval="1500" speed="100">
 	<health now="100" max="100"/>
 	<look type="128" head="79" body="126" legs="79" feet="126"/>
 	<parameters>

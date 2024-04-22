@@ -114,6 +114,7 @@ function creatureSayCallback(cid, type, msg)
     elseif msgcontains(msg, keyword14) and talkState == 24 then
 		doTeleportThing(cid,posPass)
         selfSay(response14)
+        setPlayerStorageValue(cid,6669,1)
     -- let's start the wrong answers and the "death" teleport :D
     elseif msgcontains(msg, keyword03) == nil and talkState == 13 then
         selfSay(wrong)

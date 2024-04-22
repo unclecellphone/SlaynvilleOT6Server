@@ -7,11 +7,9 @@ local area = createCombatArea(AREA_SQUARE1X1)
 setCombatArea(combat, area)
 
 function onGetFormulaValues(cid, level, maglevel)
-	min = -(level * 2.2)
-	max = -(level * 3.85)
---	min = -((level * 2) + (maglevel * 3)) * 1.4
---	max = -((level * 2) + (maglevel * 3)) * 1.65
-	return min, max
+	min = (level * 2.2)
+	max = (level * 3.85)
+	return -min, -max
 end
 
 setCombatCallback(combat, CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")

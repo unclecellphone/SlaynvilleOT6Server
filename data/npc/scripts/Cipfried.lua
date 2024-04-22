@@ -66,7 +66,7 @@ function creatureSayCallback(cid, type, msg)
 			doCreatureAddHealth(cid, 65 - getCreatureHealth(cid))
 			doSendMagicEffect(getCreaturePosition(cid), 12)
 		else
-			npcHandler:say("You aren\'t looking really bad, ' .. getCreatureName(cid) .. '. I can only help in cases of real emergencies. Raise your health simply by eating food.", cid)
+			npcHandler:say("You aren't looking really bad, " .. getCreatureName(cid) .. ". I can only help in cases of real emergencies. Raise your health simply by eating food.", cid)
 		end
 		return true
 	end

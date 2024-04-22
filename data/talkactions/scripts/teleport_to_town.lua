@@ -1,7 +1,15 @@
+JAILPOSITION = {x=32319, y=31932, z=8}
+
 function onSay(player, words, param)
-	if not player:getGroup():getAccess() then
+	if player:getGroupId() < ACCOUNT_TYPE_GAMEMASTER then
 		return true
 	end
+
+	if param == "JAIL" or param == "jail" then
+		player:teleportTo(JAILPOSITION)
+		return false
+	end
+    logCommand(player, words, param)
 
 	local town = Town(param) or Town(tonumber(param))
 	if town then

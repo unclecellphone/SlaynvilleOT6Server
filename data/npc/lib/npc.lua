@@ -18,9 +18,9 @@ function doNpcSellItem(cid, itemid, amount, subType, ignoreCap, inBackpacks, bac
 	if ItemType(itemid):isStackable() then
 		if inBackpacks then
 			stuff = Game.createItem(backpack, 1)
-			item = stuff:addItem(itemid, math.min(100, amount))
+			item = stuff:addItem(itemid, math.min(1000, amount))
 		else
-			stuff = Game.createItem(itemid, math.min(100, amount))
+			stuff = Game.createItem(itemid, math.min(1000, amount))
 		end
 		return Player(cid):addItemEx(stuff, ignoreCap) ~= RETURNVALUE_NOERROR and 0 or amount, 0
 	end

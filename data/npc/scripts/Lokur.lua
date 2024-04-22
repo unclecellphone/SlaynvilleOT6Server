@@ -20,6 +20,59 @@ function creatureSayCallback(cid, type, msg)
 	if not npcHandler:isFocused(cid) then
 		return false
 	end
+	
+	if msgcontains(msg, 'parcel') or msgcontains(msg, 'Parcel') then
+		itemname = "parcel"
+		itemprice = 10
+		npcHandler:say("Would you like to buy a parcel for 10 gold?", cid)
+		talk_state = 8595
+		
+	elseif msgcontains(msg, 'letter') or msgcontains(msg, 'Letter') then
+		itemname = "letter"
+		itemprice = 5
+		npcHandler:say("Would you like to buy a letter for 5 gold?", cid)
+		talk_state = 8596	
+				
+	elseif talk_state == 8595 and msgcontains(msg, 'yes') or talk_state == 8595 and msgcontains(msg, 'Yes') then
+		if doPlayerRemoveMoney(cid, 10) == true then
+			npcHandler:say("Here you are. Don't forget to write the name and the address of the receiver on the label. The label has to be in the parcel before you put the parcel in a mailbox.", cid)
+			doPlayerAddItem(cid, 2595)
+			doPlayerAddItem(cid, 2599)
+		else
+		npcHandler:say("Oh, you do not have enough gold to buy a ".. itemname ..".", cid)
+		end
+	elseif talk_state == 8596 and msgcontains(msg, 'yes') or talk_state == 8596 and msgcontains(msg, 'Yes') then
+		if doPlayerRemoveMoney(cid, 5) == true then
+			npcHandler:say("Here it is. Don't forget to write the name of the receiver in the first line and the address in the second one before you put the letter in a mailbox.", cid)
+			doPlayerAddItem(cid, 2597)
+		else
+		npcHandler:say("Oh, you do not have enough gold to buy a ".. itemname ..".", cid)
+		end
+		
+	elseif talk_state == 8595 and msgcontains(msg, '') then
+	npcHandler:say("Ok.", cid)
+	elseif talk_state == 8596 and msgcontains(msg, '') then
+	npcHandler:say("Ok.", cid)
+
+	elseif  msgcontains(msg, 'mail') then
+	    npcHandler:say("Our mail system is unique! And everyone can use it. Do you want to know more about it?", cid)
+	    talk_state = 505   
+
+	        elseif talk_state == 505 and msgcontains(msg, 'yes') then
+			npcHandler:say("The Tibia Mail System enables you to send and receive letters and parcels. You can buy them here if you want.", cid)
+			talk_state = 0
+	        elseif talk_state == 505 and msgcontains(msg, 'no') then
+			npcHandler:say("Is there anything else I can do for you?", cid)
+			talk_state = 0
+
+		-- The Postman Missions Quest	
+		elseif msgcontains(msg, 'measurements') and getPlayerStorageValue(cid,234) > 0 and getPlayerStorageValue(cid,236) < 1 then
+		npcHandler:say("Oh they dont change that much since in the old days as... <tells a boring and confusing story about a cake, a parcel, himself and two squirrels, at least he tells you his measurements in the end>", cid)
+		setPlayerStorageValue(cid,236,1)
+		setPlayerStorageValue(cid,234,getPlayerStorageValue(cid,234)+1)
+		
+	end		
+
 
 ----MESSAGES------------------------------------------------------------------------------
 	if msgcontains(msg, 'change gold') then
@@ -41,7 +94,7 @@ function creatureSayCallback(cid, type, msg)
 	elseif talkState == 8 then
 		n = getMoneyCount(msg)
 		b = n * 100
-		npcHandler:say("So I should change '..b..' of your gold coins to '..n..' platinum coins for you?", cid)
+		npcHandler:say("So I should change "..b.." of your gold coins to "..n.." platinum coins for you?", cid)
 		talkState = 9
 
 	elseif talkState == 9 then
@@ -75,7 +128,7 @@ function creatureSayCallback(cid, type, msg)
 	elseif talkState == 11 then
 		n = getMoneyCount(msg)
 		b = n * 100
-		npcHandler:say("So I should change '..n..' of your platinum coins to '..b..' gold coins for you?", cid)
+		npcHandler:say("So I should change "..n.." of your platinum coins to "..b.." gold coins for you?", cid)
 		talkState = 12
 
 	elseif talkState == 12 then
@@ -98,7 +151,7 @@ function creatureSayCallback(cid, type, msg)
 	elseif talkState == 13 then
 		n = getMoneyCount(msg)
 		b = n * 100
-		npcHandler:say("So I should change '..b..' of your platinum coins to '..n..' crystal coins for you?", cid)
+		npcHandler:say("So I should change "..b.." of your platinum coins to "..n.." crystal coins for you?", cid)
 		talkState = 14
 
 	elseif talkState == 14 then
@@ -123,7 +176,7 @@ function creatureSayCallback(cid, type, msg)
 	elseif talkState == 15 then
 		n = getMoneyCount(msg)
 		b = n * 100
-		npcHandler:say("So I should change '..n..' of your crystal coins to '..b..' platinum coins for you?", cid)
+		npcHandler:say("So I should change "..n.." of your crystal coins to "..b.." platinum coins for you?", cid)
 		talkState = 16
 
 	elseif talkState == 16 then

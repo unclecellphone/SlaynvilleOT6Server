@@ -1304,8 +1304,6 @@ bool RuneSpell::executeUseLate(uint32_t playerCid,  const Position& fromPos, uin
 		}
 		return true;
 	}
-	player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
-	g_game.addMagicEffect(player->getPosition(), CONST_ME_POFF);
 	return false;
 }
 

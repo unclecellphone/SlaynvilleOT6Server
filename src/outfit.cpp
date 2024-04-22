@@ -57,9 +57,12 @@ bool Outfits::loadFromXml()
 		}
 
 		outfits[type].emplace_back(
-			outfitNode.attribute("name").as_string(),
+			outfitNode.attribute("name").as_string(), 
 			pugi::cast<uint16_t>(lookTypeAttribute.value()),
 			outfitNode.attribute("premium").as_bool(),
+			outfitNode.attribute("patreon1").as_bool(),
+			outfitNode.attribute("patreon2").as_bool(),
+			outfitNode.attribute("patreon3").as_bool(),
 			outfitNode.attribute("unlocked").as_bool(true)
 		);
 	}

@@ -9,6 +9,7 @@ function onSay(player, words, param)
 		return true
 	end
 
+	logCommand(player, words, param)
 	if player:getPremiumDays() <= config.maxDays then
 		if player:removeTotalMoney(config.price) then
 			player:addPremiumDays(config.days)

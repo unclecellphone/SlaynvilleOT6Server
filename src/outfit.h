@@ -23,8 +23,8 @@
 #include "enums.h"
 
 struct Outfit {
-	Outfit(std::string name, uint16_t lookType, bool premium, bool unlocked) :
-		name(std::move(name)), lookType(lookType), premium(premium), unlocked(unlocked) {}
+	Outfit(std::string name, uint16_t lookType, bool premium, bool patreon1, bool patreon2, bool patreon3, bool unlocked) :
+		name(std::move(name)), lookType(lookType), premium(premium), patreon1(patreon1), patreon2(patreon2), patreon3(patreon3), unlocked(unlocked) {}
 
 	bool operator==(const Outfit& otherOutfit) const
 	{
@@ -35,6 +35,9 @@ struct Outfit {
 	uint16_t lookType;
 	bool premium;
 	bool unlocked;
+	bool patreon1;
+	bool patreon2;
+	bool patreon3;
 };
 
 struct ProtocolOutfit {

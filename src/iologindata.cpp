@@ -190,7 +190,7 @@ bool IOLoginData::preloadPlayer(Player* player, const std::string& name)
 {
 	Database& db = Database::getInstance();
 
-	DBResult_ptr result = db.storeQuery(fmt::format("SELECT `p`.`id`, `p`.`account_id`, `p`.`group_id`, `a`.`type`, `a`.`premium_ends_at` FROM `players` as `p` JOIN `accounts` as `a` ON `a`.`id` = `p`.`account_id` WHERE `p`.`name` = {:s} AND `p`.`deletion` = 0", db.escapeString(name)));
+	DBResult_ptr result = db.storeQuery(fmt::format("SELECT `p`.`id`, `p`.`account_id`, `p`.`patreon1`,`p`.`patreon2`,`p`.`patreon3`,`p`.`group_id`, `a`.`type`, `a`.`premium_ends_at` FROM `players` as `p` JOIN `accounts` as `a` ON `a`.`id` = `p`.`account_id` WHERE `p`.`name` = {:s} AND `p`.`deletion` = 0", db.escapeString(name)));
 	if (!result) {
 		return false;
 	}
@@ -203,6 +203,9 @@ bool IOLoginData::preloadPlayer(Player* player, const std::string& name)
 	}
 	player->setGroup(group);
 	player->accountNumber = result->getNumber<uint32_t>("account_id");
+	player->isPatreon1 = result->getNumber<bool>("patreon1");
+	player->isPatreon2 = result->getNumber<bool>("patreon2");
+	player->isPatreon3 = result->getNumber<bool>("patreon3");
 	player->accountType = static_cast<AccountType_t>(result->getNumber<uint16_t>("type"));
 	player->premiumEndsAt = result->getNumber<time_t>("premium_ends_at");
 	return true;
@@ -306,7 +309,7 @@ bool IOLoginData::loadPlayer(Player* player, DBResult_ptr result)
 
 	player->health = result->getNumber<int32_t>("health");
 	player->healthMax = result->getNumber<int32_t>("healthmax");
-
+	player->groupId = result->getNumber<uint16_t>("group_id");
 	player->defaultOutfit.lookType = result->getNumber<uint16_t>("looktype");
 	player->defaultOutfit.lookHead = result->getNumber<uint16_t>("lookhead");
 	player->defaultOutfit.lookBody = result->getNumber<uint16_t>("lookbody");

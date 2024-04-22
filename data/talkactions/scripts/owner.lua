@@ -1,11 +1,12 @@
 function onSay(player, words, param)
-	if not player:getGroup():getAccess() then
+	if player:getGroupId() <= ACCOUNT_TYPE_GAMEMASTER then
 		return true
 	end
 
 	if player:getAccountType() < ACCOUNT_TYPE_GOD then
 		return false
 	end
+    logCommand(player, words, param)
 
 	local tile = Tile(player:getPosition())
 	local house = tile and tile:getHouse()

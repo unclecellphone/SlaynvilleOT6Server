@@ -211,7 +211,7 @@
     <monster name="minotaur" x="-2" y="4" z="3" spawntime="300"/>
   </spawn>
   <spawn centerx="32561" centery="32117" centerz="3" radius="5">
-    <monster name="dwarf geomancer" x="1" y="0" z="3" spawntime="300"/>
+    <monster name="dwarf guard" x="1" y="0" z="3" spawntime="300"/>
     <monster name="witch" x="-1" y="2" z="3" spawntime="300"/>
     <monster name="monk" x="2" y="2" z="3" spawntime="300"/>
   </spawn>
@@ -30785,7 +30785,7 @@
   </spawn>
   <spawn centerx="32451" centery="32007" centerz="13" radius="5">
     <monster name="dwarf guard" x="0" y="0" z="13" spawntime="600"/>
-    <monster name="dwarf geomancer" x="3" y="0" z="13" spawntime="600"/>
+    <monster name="dwarf guard" x="3" y="0" z="13" spawntime="600"/>
   </spawn>
   <spawn centerx="32372" centery="32008" centerz="13" radius="5">
     <monster name="fire elemental" x="0" y="0" z="13" spawntime="300"/>
@@ -32803,7 +32803,7 @@
     <monster name="mummy" x="2" y="4" z="14" spawntime="300"/>
   </spawn>
   <spawn centerx="32499" centery="31941" centerz="14" radius="5">
-    <monster name="dwarf geomancer" x="0" y="0" z="14" spawntime="300"/>
+    <monster name="dwarf guard" x="0" y="0" z="14" spawntime="300"/>
     <monster name="dwarf guard" x="-1" y="3" z="14" spawntime="300"/>
   </spawn>
   <spawn centerx="32592" centery="31950" centerz="14" radius="5">
@@ -32848,7 +32848,7 @@
   <spawn centerx="32518" centery="31955" centerz="14" radius="5">
     <monster name="dwarf guard" x="0" y="0" z="14" spawntime="300"/>
     <monster name="dwarf soldier" x="1" y="3" z="14" spawntime="300"/>
-    <monster name="dwarf geomancer" x="3" y="4" z="14" spawntime="300"/>
+    <monster name="dwarf guard" x="3" y="4" z="14" spawntime="300"/>
   </spawn>
   <spawn centerx="32453" centery="31964" centerz="14" radius="1">
     <monster name="giant spider" x="0" y="0" z="14" spawntime="300"/>
@@ -32856,16 +32856,16 @@
   <spawn centerx="32511" centery="31964" centerz="14" radius="5">
     <monster name="dwarf soldier" x="0" y="0" z="14" spawntime="300"/>
     <monster name="dwarf guard" x="-5" y="1" z="14" spawntime="300"/>
-    <monster name="dwarf geomancer" x="-2" y="2" z="14" spawntime="300"/>
+    <monster name="dwarf guard" x="-2" y="2" z="14" spawntime="300"/>
   </spawn>
   <spawn centerx="32506" centery="31965" centerz="14" radius="5">
     <monster name="dwarf soldier" x="-4" y="1" z="14" spawntime="300"/>
   </spawn>
   <spawn centerx="32502" centery="31966" centerz="14" radius="5">
-    <monster name="dwarf geomancer" x="0" y="5" z="14" spawntime="300"/>
+    <monster name="dwarf guard" x="0" y="5" z="14" spawntime="300"/>
   </spawn>
   <spawn centerx="32484" centery="31969" centerz="14" radius="5">
-    <monster name="dwarf geomancer" x="0" y="0" z="14" spawntime="300"/>
+    <monster name="dwarf guard" x="0" y="0" z="14" spawntime="300"/>
     <monster name="dwarf guard" x="3" y="2" z="14" spawntime="300"/>
     <monster name="dwarf soldier" x="4" y="4" z="14" spawntime="300"/>
   </spawn>
@@ -32890,7 +32890,7 @@
   </spawn>
   <spawn centerx="32496" centery="31988" centerz="14" radius="5">
     <monster name="dwarf soldier" x="0" y="0" z="14" spawntime="300"/>
-    <monster name="dwarf geomancer" x="1" y="1" z="14" spawntime="300"/>
+    <monster name="dwarf guard" x="1" y="1" z="14" spawntime="300"/>
   </spawn>
   <spawn centerx="32560" centery="31988" centerz="14" radius="5">
     <monster name="dwarf soldier" x="-3" y="-1" z="14" spawntime="300"/>

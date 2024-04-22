@@ -3,8 +3,10 @@ local removalLimit = 500
 
 function onCastSpell(creature, variant, isHotkey)
 	local position = variant:getPosition()
+	local casterPos = creature:getPosition()
+	local dist = getDistanceBetween(position, casterPos)
 	local tile = Tile(position)
-	if tile then
+	if tile and dist < 2 then
 		local items = tile:getItems()
 		if items then
 			for i, item in ipairs(items) do
